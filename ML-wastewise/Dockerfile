@@ -8,8 +8,8 @@ WORKDIR /app
 COPY . /app
 
 RUN pip install --upgrade pip && \
-    pip install -r fastapi/requirements.txt
+    pip install -r requirements.txt
 
 EXPOSE 8080
 
-CMD ["python", "FastAPI/main.py"]
+CMD ["python", "main.py"]
