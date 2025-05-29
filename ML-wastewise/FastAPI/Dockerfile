@@ -5,11 +5,10 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY . /app
-COPY ../save-model /app/save-model
+COPY ../ /app
 
 RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+    pip install -r fastapi/requirements.txt
 
 EXPOSE 8080
 
