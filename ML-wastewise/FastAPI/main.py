@@ -1,5 +1,6 @@
 from fastapi import FastAPI, File, UploadFile, Request
 from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.templating import Jinja2Templates
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
@@ -14,7 +15,17 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 genai.configure(api_key=GEMINI_API_KEY)
 
+# Inisialisasi FastAPI dan middleware CORS
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # izinkan semua origin
+    allow_credentials=True,
+    allow_methods=["*"],  # izinkan semua metode HTTP (GET, POST, dll)
+    allow_headers=["*"],  # izinkan semua header
+)
+
+# Inisialisasi Jinja2 untuk templating HTML
 templates = Jinja2Templates(directory="templates")
 
 # Load model tanpa compile (untuk inference)
