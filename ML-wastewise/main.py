@@ -94,6 +94,20 @@ async def classify_waste(request: Request, file: UploadFile = File(...)):
 
     return templates.TemplateResponse("index.html", {"request": request, "result": result})
 
+@app.post("/api/klasifikasi-sampah")
+async def classify_waste_json(file: UploadFile = File(...)):
+    temp_file = f"temp_{file.filename}"
+    with open(temp_file, "wb") as f:
+        shutil.copyfileobj(file.file, f)
+    try:
+        result = predict_image(temp_file)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+    finally:
+        os.remove(temp_file)
+
+    return JSONResponse(content=result, status_code=200)
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8080))
