@@ -29,7 +29,7 @@ app.add_middleware(
 templates = Jinja2Templates(directory="templates")
 
 # Load model tanpa compile (untuk inference)
-model = load_model('../save-model/model_dense.keras', compile=False)
+model = load_model('./save-model/model_dense.keras', compile=False)
 
 class_names = ['Alas Kaki', 'Daun', 'Kaca', 'Kain Pakaian', 'Kardus', 'Kayu',
                'Kertas', 'Logam', 'Plastik', 'Sampah Elektronik', 'Sampah makanan', 'Sterofoam']

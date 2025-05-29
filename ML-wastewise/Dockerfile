@@ -5,11 +5,11 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY ../ /app
+COPY . /app
 
 RUN pip install --upgrade pip && \
     pip install -r fastapi/requirements.txt
 
 EXPOSE 8080
 
-CMD ["python", "main.py"]
+CMD ["python", "FastAPI/main.py"]
