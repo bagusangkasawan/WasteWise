@@ -19,4 +19,4 @@ RUN pip install --upgrade pip && \
 EXPOSE 8080
 
 # Jalankan server dengan Uvicorn
-CMD ["uvicorn", "main:app", "--reload"]
+CMD ["python", "main.py"]
