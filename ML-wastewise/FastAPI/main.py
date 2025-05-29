@@ -40,7 +40,7 @@ golongan_mapping = {
 
 def get_saran_gemini(nama_sampah):
     try:
-        prompt = f'Berikan saya saran pengolahan sampah yang baik untuk jenis : {nama_sampah}, langsung berikan jawaban untuk user.'
+        prompt = f'Berikan saran pengolahan sampah yang baik untuk jenis : {nama_sampah}, langsung berikan jawaban dalam bentuk paragraf atau poin-poin.'
         model_gemini = genai.GenerativeModel('gemini-2.0-flash-lite')
         response = model_gemini.generate_content(prompt)
         return response.text.strip()
@@ -85,5 +85,5 @@ async def classify_waste(request: Request, file: UploadFile = File(...)):
 
 if __name__ == "__main__":
     import uvicorn
-    port = int(os.environ.get("PORT", 8000))
+    port = int(os.environ.get("PORT", 8080))
     uvicorn.run("main:app", host="0.0.0.0", port=port)
